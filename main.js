@@ -2356,10 +2356,9 @@ class WikiAiSettingTab extends obsidian.PluginSettingTab {
   display() {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: "WikiGraph 设置" });
 
     new obsidian.Setting(containerEl)
-      .setName("API Base URL")
+      .setName("API base URL")
       .setDesc("OpenAI 兼容接口地址（如 https://api.openai.com/v1）")
       .addText((text) =>
         text
