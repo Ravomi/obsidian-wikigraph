@@ -1,0 +1,405 @@
+/* ==========================================================================
+   Wiki AI 词条精讲 · Native Obsidian Look & Feel
+   Uses 100% native Obsidian CSS variables & graph-controls classes
+   ========================================================================== */
+
+/* 1. Floating Selection Button */
+.wiki-ai-floating-btn {
+  position: fixed;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-s);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  border: 1px solid var(--background-modifier-border-hover);
+  box-shadow: var(--shadow-s);
+  font-size: var(--font-ui-small);
+  font-weight: var(--font-medium);
+  line-height: 1.2;
+  cursor: pointer;
+  user-select: none;
+}
+
+.wiki-ai-floating-btn:hover {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-color: var(--interactive-accent);
+}
+
+.wiki-ai-floating-btn .wiki-ai-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 13px;
+  height: 13px;
+}
+
+.wiki-ai-floating-btn .wiki-ai-btn-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ==========================================================================
+   2. Right Sidebar: Pure Native Obsidian Graph View + Native .graph-controls
+   ========================================================================== */
+.wiki-ai-graph-sidebar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+  overflow: hidden;
+  background-color: var(--background-primary);
+  user-select: none;
+}
+
+.wiki-ai-graph-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Native Obsidian Graph Controls Panel (Top-Right) */
+.wiki-ai-graph-controls {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 30;
+  width: 240px;
+  max-height: calc(100% - 16px);
+  overflow-y: auto;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m, 8px);
+  box-shadow: var(--shadow-s);
+  padding: 0;
+  color: var(--text-normal);
+  font-size: var(--font-ui-small, 13px);
+}
+
+.wiki-ai-graph-controls.is-closed {
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wiki-ai-graph-controls-closed-btns {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wiki-ai-graph-controls.is-closed .wiki-ai-graph-controls-closed-btns {
+  display: flex !important;
+}
+
+.wiki-ai-graph-controls-closed-btns .clickable-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  border-radius: var(--radius-s, 4px);
+  color: var(--icon-color, var(--text-muted));
+  cursor: pointer;
+}
+
+.wiki-ai-graph-controls-closed-btns .clickable-icon:hover {
+  color: var(--icon-color-hover, var(--text-normal));
+  background-color: var(--background-modifier-hover);
+}
+
+.wiki-ai-graph-controls.is-closed .wiki-ai-graph-controls-body {
+  display: none !important;
+}
+
+.wiki-ai-graph-Section {
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding: 10px 12px;
+}
+
+.wiki-ai-graph-Section:last-child {
+  border-bottom: none;
+}
+
+.wiki-ai-graph-Section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: var(--font-semibold, 600);
+  color: var(--text-normal);
+  line-height: 1.4;
+}
+
+.wiki-ai-graph-Section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wiki-ai-graph-Section-title .wiki-ai-chevron {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+  transition: transform 0.12s ease;
+}
+
+.wiki-ai-graph-Section.is-collapsed .wiki-ai-chevron {
+  transform: rotate(-90deg);
+}
+
+.wiki-ai-graph-Section.is-collapsed .wiki-ai-graph-Section-content {
+  display: none;
+}
+
+.wiki-ai-graph-Section-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.wiki-ai-graph-Section-actions .clickable-icon {
+  padding: 2px;
+  color: var(--text-muted);
+}
+
+.wiki-ai-graph-Section-actions .clickable-icon:hover {
+  color: var(--text-normal);
+}
+
+.wiki-ai-graph-Section-content {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Search input inside 筛选 */
+.wiki-ai-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wiki-ai-search-wrap .wiki-ai-search-icon {
+  position: absolute;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.wiki-ai-search-input {
+  width: 100%;
+  padding-left: 28px !important;
+  height: 28px;
+  font-size: var(--font-ui-small, 12.5px);
+}
+
+/* Toggle row inside 筛选 / 外观 */
+.wiki-ai-control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: var(--font-ui-small, 13px);
+  color: var(--text-normal);
+}
+
+/* Slider row inside 外观 / 力度 */
+.wiki-ai-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wiki-ai-slider-label {
+  font-size: var(--font-ui-small, 12.5px);
+  color: var(--text-normal);
+}
+
+.wiki-ai-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wiki-ai-slider-val {
+  min-width: 32px;
+  font-size: var(--font-ui-smaller, 12px);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.wiki-ai-slider-row input[type="range"] {
+  flex: 1;
+}
+
+/* Color groups inside 颜色组 */
+.wiki-ai-color-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wiki-ai-color-group-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wiki-ai-color-group-item input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  height: 26px;
+  font-size: 12px;
+}
+
+.wiki-ai-color-group-item input[type="color"] {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.wiki-ai-full-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: var(--font-ui-small, 12.5px);
+}
+
+.wiki-ai-right-btn-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   3. Main Tab View: Native Obsidian Note Reading Style
+   ========================================================================== */
+.wiki-ai-entry-tab-container {
+  height: 100%;
+  overflow-y: auto;
+  padding: var(--file-margins, 32px 48px);
+  background-color: var(--background-primary);
+  color: var(--text-normal);
+}
+
+.wiki-ai-entry-page {
+  max-width: var(--file-line-width, 700px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wiki-ai-entry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.wiki-ai-entry-title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.wiki-ai-entry-title {
+  margin: 0;
+  font-size: var(--inline-title-size, 1.8em);
+  font-weight: var(--inline-title-weight, 700);
+  line-height: var(--inline-title-line-height, 1.2);
+  color: var(--inline-title-color, var(--text-normal));
+}
+
+.wiki-ai-entry-source {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.wiki-ai-entry-source:hover {
+  color: var(--text-normal);
+  text-decoration: underline;
+}
+
+.wiki-ai-entry-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wiki-ai-streaming-hint {
+  font-size: var(--font-ui-small);
+  color: var(--text-muted);
+}
+
+.wiki-ai-explanation-box {
+  font-size: var(--font-text-size, 16px);
+  line-height: var(--line-height-normal, 1.6);
+  color: var(--text-normal);
+  user-select: text;
+}
+
+/* Follow-up Input */
+.wiki-ai-followup-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--background-modifier-border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wiki-ai-followup-item {
+  padding: 10px 14px;
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+}
+
+.wiki-ai-followup-q {
+  font-weight: var(--font-semibold);
+  font-size: var(--font-ui-small);
+  color: var(--text-normal);
+  margin-bottom: 6px;
+}
+
+.wiki-ai-followup-a {
+  font-size: var(--font-text-size, 15px);
+  line-height: var(--line-height-normal, 1.6);
+  user-select: text;
+}
+
+.wiki-ai-followup-bar {
+  display: flex;
+  gap: 8px;
+}
+
+.wiki-ai-followup-input {
+  flex: 1;
+}

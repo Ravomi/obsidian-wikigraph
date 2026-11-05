@@ -1,0 +1,10 @@
+{
+  "id": "wikigraph",
+  "name": "WikiGraph",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Explore concepts like Wikipedia with AI explanations, a live force-directed relationship graph in the sidebar, and one-click export to your vault.",
+  "author": "Waya",
+  "authorUrl": "https://github.com/Ravomi",
+  "isDesktopOnly": false
+}
